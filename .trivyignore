@@ -1,0 +1,4 @@
+# CVE-2025-47273: path traversal no PackageIndex do setuptools.
+# Falso positivo: a imagem usa setuptools 84.2.1 (corrigido).
+# O 70.3.0 vem de metadado/SBOM embutido, não de pacote instalado.
+CVE-2025-47273
