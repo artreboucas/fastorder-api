@@ -75,6 +75,10 @@ jobs:
           load: true
           tags: fastorder-api:scan
 
+      - name: Diagnóstico (onde está o setuptools 70.3.0?)
+        run: |
+          docker run --rm --entrypoint sh fastorder-api:scan -c "find / -iname '*setuptools*' -not -path '/proc/*' -not -path '/sys/*' 2>/dev/null | head -50; echo '--- SBOM ---'; find / \( -name '*.cdx.json' -o -name '*.spdx*' -o -name 'sbom*' \) -not -path '/proc/*' -not -path '/sys/*' 2>/dev/null | head -20; echo '--- pip list ---'; pip list 2>/dev/null | grep -i setuptools"
+
       - name: Scan da imagem (Trivy)
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
